@@ -1,0 +1,9 @@
+Package: com.custom.mangounlock
+Name: MangoUnlock
+Version: 1.0
+Architecture: iphoneos-arm64
+Description: Mango auth bypass + popup blocker
+Maintainer: Custom
+Author: Custom
+Section: Tweaks
+Depends: mobilesubstrate

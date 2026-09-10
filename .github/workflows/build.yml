@@ -1,0 +1,16 @@
+name: Build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: theos/theos-github-action@master
+      - name: Install ldid
+        run: |
+          sudo curl -sL -o /usr/local/bin/ldid https://github.com/ProcursusTeam/ldid/releases/download/v2.1.5-procursus7/ldid_linux_x86_64
+          sudo chmod +x /usr/local/bin/ldid
+      - name: Build
+        run: make package THEOS_PACKAGE_SCHEME=rootless
+      - uses: actions/upload-artifact@v4
+        with: { name: deb, path: packages/*.deb }
