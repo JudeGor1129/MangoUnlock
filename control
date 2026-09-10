@@ -1,9 +1,9 @@
 Package: com.custom.mangounlock
 Name: MangoUnlock
-Version: 1.0
+Version: 1.0.0
 Architecture: iphoneos-arm64
-Description: Mango auth bypass + popup blocker
-Maintainer: Custom
-Author: Custom
+Description: Mango full unlock and no popup
+Maintainer: JudeGor1129
+Author: JudeGor1129
 Section: Tweaks
 Depends: mobilesubstrate
