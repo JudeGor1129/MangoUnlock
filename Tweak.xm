@@ -1,6 +1,7 @@
 #import <substrate.h>
 #import <dlfcn.h>
 #import <objc/runtime.h>
+#import <dispatch/dispatch.h>
 
 // ===== 授权解锁 =====
 static int (*orig_mgo_internal_verify)(void);
