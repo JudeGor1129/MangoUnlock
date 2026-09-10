@@ -5,32 +5,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Checkout Theos
-        uses: actions/checkout@v4
-        with:
-          repository: theos/theos
-          path: theos
-          submodules: true
-      - name: Download iOS 15.6 SDK
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y git-lfs
-          rm -rf "$THEOS/sdks"
-          git clone --depth 1 --filter=blob:none --sparse https://github.com/theos/sdks "$THEOS/sdks"
-          cd "$THEOS/sdks"
-          git sparse-checkout set iPhoneOS15.6.sdk
-          git lfs install
-          git lfs pull
-        env:
-          THEOS: ${{ github.workspace }}/theos
       - name: Install ldid
         run: |
           curl -sL -o /tmp/ldid https://github.com/ProcursusTeam/ldid/releases/download/v2.1.5-procursus7/ldid_linux_x86_64
           sudo install -m755 /tmp/ldid /usr/local/bin/ldid
-      - name: Build
-        run: make package THEOS_PACKAGE_SCHEME=rootless
-        env:
-          THEOS: ${{ github.workspace }}/theos
+      - name: Build with Theos
+        uses: theos/theos-github-action@master
+        with:
+          scheme: rootless
       - uses: actions/upload-artifact@v4
         with:
           name: deb
