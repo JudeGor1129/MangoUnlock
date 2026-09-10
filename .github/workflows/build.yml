@@ -16,6 +16,7 @@ jobs:
         with:
           repository: theos/sdks
           path: theos/sdks
+          submodules: true
       - name: Install ldid
         run: |
           curl -sL -o /tmp/ldid https://github.com/ProcursusTeam/ldid/releases/download/v2.1.5-procursus7/ldid_linux_x86_64
