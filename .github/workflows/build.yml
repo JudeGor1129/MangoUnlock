@@ -5,14 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install ldid
+      - name: Build with Theos Docker
         run: |
-          curl -sL -o /tmp/ldid https://github.com/ProcursusTeam/ldid/releases/download/v2.1.5-procursus7/ldid_linux_x86_64
-          sudo install -m755 /tmp/ldid /usr/local/bin/ldid
-      - name: Build with Theos
-        uses: theos/theos-github-action@master
-        with:
-          scheme: rootless
+          docker run --rm -v "$PWD":/work -w /work \
+            ghcr.io/theos/theos:latest \
+            make package THEOS_PACKAGE_SCHEME=rootless
       - uses: actions/upload-artifact@v4
         with:
           name: deb
