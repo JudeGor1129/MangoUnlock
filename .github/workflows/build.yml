@@ -10,11 +10,11 @@ jobs:
         with:
           repository: theos/theos
           path: theos
-          submodules: true
       - name: Download iOS 15.0 SDK
         run: |
           sudo apt-get update
           sudo apt-get install -y git-lfs
+          rm -rf "$THEOS/sdks"
           git clone --depth 1 --filter=blob:none --sparse https://github.com/theos/sdks "$THEOS/sdks"
           cd "$THEOS/sdks"
           git sparse-checkout set iPhoneOS15.0.sdk
